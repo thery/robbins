@@ -26,6 +26,7 @@ script:
   docker exec COQ /bin/bash --login -c "
     export PS4='+ \e[33;1m(\$0 @ line \$LINENO) \$\e[0m '
     set -ex
+    pwd
     ls
     "
 - docker stop COQ  # optional
