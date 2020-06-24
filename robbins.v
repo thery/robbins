@@ -45,7 +45,7 @@ Variable PB : B.
 Lemma P1 x : (x ∪ x = x) /\ (x ∩ x = x).
 Proof.
 have [B1 B2 B3 B4 B5 B'1 B'2 B'3 B'4 B'5] := PB.
-by rewrite -{2}(B'3 x x) B3 -{4}(B3 x x) B'3.
+by rewrite -[X in _ ∪ X](B'3 x x) B3 -[X in _ ∩ X](B3 x x) B'3.
 Qed.
 
 Lemma P1l x : x ∪ x = x.
@@ -77,8 +77,8 @@ Proof. by have [] := P3 x. Qed.
 Lemma P4 x : x ∪ 1 = 1 /\ x ∩ 0 = 0.
 Proof.
 have [B1 B2 B3 B4 B5 B'1 B'2 B'3 B'4 B'5] := (PB).
-split; first by rewrite -{1}(B5 x) B1 P1l.
-by rewrite -{1}(B'5 x) B'1 P1r.
+split; first by rewrite -(B5 x) B1 P1l.
+by rewrite -(B'5 x) B'1 P1r.
 Qed.
 
 Lemma P4l x : x ∪ 1 = 1.
@@ -100,7 +100,7 @@ Proof.
 have [B1 B2 B3 B4 B5 B'1 B'2 B'3 B'4 B'5] := PB.
 split=> [// | y z [yC1 yC2] [zC1 zC2]].
 rewrite -[y]P3r -[z]P3r.
-by rewrite -{1}zC1 -yC1 !B4 B'2 yC2 [z ∩ _]B'2 zC2 B'2.
+by rewrite -[in y ∩ 1]zC1 -yC1 !B4 B'2 yC2 [z ∩ _]B'2 zC2 B'2.
 Qed.
 
 Lemma P5l x : is_comp x x^-1.
@@ -126,7 +126,7 @@ Lemma P9 x y : (x ∪ y)^-1 = x^-1 ∩ y^-1 /\ (x ∩ y)^-1 = x^-1 ∪ y^-1.
 Proof.
 have [B1 B2 B3 B4 B5 B'1 B'2 B'3 B'4 B'5] := PB.
 split; apply: P5r; split.
-- by rewrite B'4 {1}[x ∪ _]B2 -!B1 !B5 !P4l P3r.
+- by rewrite B'4 [X in X ∪ x^-1]B2 -!B1 !B5 !P4l P3r.
 - by rewrite B'2 -B'1 B4 [_ ∩ y]B'2 B'5 P3l B'2 -B'1 B'5 P4r.
 - by rewrite B2 B'4 B2 B1 B5 B2 P4l -B1 [_ ∪ y]B2 B5 P4l P3r.
 by rewrite B4 [_ ∩ y]B'2 -B'1 B'5 P4r [_ ∩ x]B'2 -B'1 B'5 P4r P3l.
@@ -207,10 +207,10 @@ Variable PH : H.
 Lemma P12 x : x ∪ x^-1 = x^-1 ∪ x^-1^-1.
 Proof.
 have [H1 H2 H3] := PH.
-rewrite -{1}[X in X ∪ _ = _](H3 _ x^-1^-1).
-rewrite -{1}[X in _ ∪ X = _](H3 _ x^-1^-1).
-rewrite -{1}[X in _ = X ∪ _](H3 _ x^-1).
-rewrite -{1}[X in _ = _ ∪ X](H3 _ x^-1).
+rewrite -[X in X ∪ _ = _](H3 _ x^-1^-1).
+rewrite -[X in _ ∪ X = _](H3 _ x^-1^-1).
+rewrite -[X in _ = X ∪ _](H3 _ x^-1).
+rewrite -[X in _ = _ ∪ X](H3 _ x^-1).
 set X1 := (_ ∪ _)^-1; set X2 := (_ ∪ _)^-1.
 set X3 := (_ ∪ _)^-1; set X4 := (_ ∪ _)^-1.
 rewrite [x^-1^-1 ∪ _]H2 -/X2 [x^-1^-1^-1 ∪ _]H2 -/X3 [x^-1^-1^-1 ∪ _]H2 -/X1.
@@ -220,8 +220,8 @@ Qed.
 Lemma P13 x : x^-1^-1 = x.
 Proof.
 have [H1 H2 H3] := PH.
-rewrite -{1}[X in X = _](H3 _ x^-1).
-rewrite [X in X^-1 ∪ _ = _]H2 -P12 -[X in _ = X](H3 x x^-1^-1).
+rewrite -[LHS](H3 _ x^-1).
+rewrite [X in X^-1 ∪ _ = _]H2 -P12 -[RHS](H3 x x^-1^-1).
 by rewrite H2 [X in X^-1 ∪ _ = _]H2.
 Qed.
 
@@ -261,10 +261,10 @@ Proof. by rewrite /hcap H2. Qed.
 
 Lemma P20 x y : x ∪ x^-1 = y ∪ y^-1.
 Proof.
-rewrite -{1}[X in X ∪ _ = _](H3 PH _ y^-1).
-rewrite -{1}[X in _ ∪ X = _](H3 PH _ y^-1).
-rewrite -{1}[X in _ = X ∪ _](H3 PH _ x^-1).
-rewrite -{1}[X in _ = _ ∪ X](H3 PH _ x^-1).
+rewrite -[X in X ∪ _ = _](H3 PH _ y^-1).
+rewrite -[X in _ ∪ X = _](H3 PH _ y^-1).
+rewrite -[X in _ = X ∪ _](H3 PH _ x^-1).
+rewrite -[X in _ = _ ∪ X](H3 PH _ x^-1).
 rewrite ![_ ∪ x^-1]H2 // ![_ ∪ (x^-1^-1)]H2 //.
 by AC cup H1 H2.
 Qed.
@@ -278,17 +278,17 @@ Proof. by rewrite /hcap P21l. Qed.
 Lemma P22 x : x ∪ 0 = x /\ x ∩ 1 = x.
 Proof.
 have F1 : 1^-1 = (1 ∪ 1)^-1 ∪ 1^-1.
-  by rewrite -/hbot -[X in X = _](H3 PH _ 0) !P13 P21l.
+  by rewrite -/hbot -[LHS](H3 PH _ 0) !P13 P21l.
 have F2 : 1 = 1 ∪ (1 ∪ 1)^-1.
-  by rewrite -[X in X = _](P21l 1) F1 H1 // H2 // H1 // [1^-1 ∪ _]H2 // P21l.
+  by rewrite -[LHS](P21l 1) F1 H1 // H2 // H1 // [1^-1 ∪ _]H2 // P21l.
 have F3 : 1 = 1 ∪ 1.
-  by rewrite -{1}(P21l (1 ∪ 1)) -H1 // -F2.
-have F4 : 0 = 0 ∪ 0 by rewrite /hbot {1}F1 -F3.
+  by rewrite -[LHS](P21l (1 ∪ 1)) -H1 // -F2.
+have F4 : 0 = 0 ∪ 0 by rewrite /hbot [LHS]F1 -!F3.
 have F5 z : z ∪ 0 = z.
- rewrite -{1}[X in X ∪ _ = _](H3 PH _ z).
+ rewrite -[X in X ∪ _ = _](H3 PH _ z).
  rewrite [X in (_ ∪ X^-1) ∪ _]H2 // P21l -H1 // -F4.
  rewrite -[X in _ ∪ X^-1 = _](P21l z).
- by rewrite -{1}[X in _ = X](H3 PH _ z) [X in _ ∪ X^-1 = _]H2.
+ by rewrite -[RHS](H3 PH _ z) [X in _ ∪ X^-1 = _]H2.
 by split; rewrite // /hcap F5 P13.
 Qed.
 
@@ -300,7 +300,7 @@ Proof. by have [] := P22 x. Qed.
 Lemma P23 x : x ∪ x = x /\ x ∩ x = x.
 Proof.
 have F z : z ∩ z = z.
-  rewrite -{1}[X in _ = X](H3 PH _ z) [X in _ = _ ∪ X^-1]H2 //.
+  rewrite -[RHS](H3 PH _ z) [X in _ = _ ∪ X^-1]H2 //.
   by rewrite P21l P22l P15l P13.
 by split; rewrite // P16 F P13.
 Qed.
@@ -313,7 +313,7 @@ Proof. by have [] := P23 x. Qed.
 Lemma P24 x : x ∪ 1 = 1 /\ x ∩ 0 = 0.
 Proof.
 have F z : z ∪ 1 = 1.
-  by rewrite -{1}(P21l z) H1 // P23l P21l.
+  by rewrite -[in LHS](P21l z) H1 // P23l P21l.
 by split; rewrite // /hcap P13 F.
 Qed.
 
@@ -324,20 +324,20 @@ Proof. by have [] := P24 x. Qed.
 
 Lemma P25 x y : x ∪ (x ∩ y) = x.
 Proof.
-by rewrite -{1}(H3 PH x y) /hcap H2 // H1 // P23l H3.
+by rewrite -[X in X ∪ _](H3 PH x y) /hcap H2 // H1 // P23l H3.
 Qed.
 
 Lemma P26 x y : x ∩ (x ∪ y) = x.
 Proof.
-by rewrite -{1}(P13 x) -{1}(P13 (x ∪ y)) -P15l (P15l x) P25 P13.
+by rewrite -[X in X ∩ _](P13 x) -(P13 (x ∪ y)) -P15l (P15l x) P25 P13.
 Qed.
 
 Lemma P27 x y z : x ∩ (y ∪ z) = (x ∩ y) ∪ (x ∩ z).
 Proof.
-rewrite -[X in X = _](P17 _ y) -P18 (P19 _ y) P26.
+rewrite -[LHS](P17 _ y) -P18 (P19 _ y) P26.
 rewrite -[X in X ∪ _ = _](P17 _ z) -[X in _ ∪ X = _](P17 _ z).
 have -> : ((x ∩ (y ∪ z)) ∩ y^-1) ∩ z = (x ∩ y^-1) ∩ z.
-  rewrite -{3}[z](P26 z y) H2 //.
+  rewrite -[in RHS](P26 z y) H2 //.
   by AC hcap P18 P19.
 rewrite -!P18 -P15l P21r P24r P22l.
 rewrite -[X in X ∪ _ ∪ _]P23l -!H1 // H2 // !H1 //.
@@ -370,7 +370,7 @@ Lemma P30 : R -> Wm2 -> H.
 Proof.
 move=> [R1 R2 R3] HWm2.
 split=> // x y.
-by rewrite -[X in X = _]HWm2 R2 R3 HWm2.
+by rewrite -[LHS]HWm2 R2 R3 HWm2.
 Qed.
 
 Let Wm1 := exists z, forall x, x ∪ z = x.
@@ -381,9 +381,9 @@ move=> [R1 R2 R3] [zero HWm1] x.
 have F1 z : zero = (z^-1 ∪ z^-1^-1)^-1.
   by rewrite -[zero](R3 _ z) ![zero ∪ _]R2 !HWm1.
 have F2 z : z^-1 = (z^-1 ∪ z^-1^-1^-1)^-1^-1.
-  by rewrite -{1}(R3 z^-1 z^-1^-1) -F1 R2 HWm1.
+  by rewrite -[in LHS](R3 z^-1 z^-1^-1) -F1 R2 HWm1.
 have F3 z : z^-1^-1^-1 = (z^-1^-1^-1 ∪ z^-1)^-1^-1.
-  rewrite -{1}(R3 z^-1^-1^-1 z^-1) -[X in (_ ∪ X^-1)^-1 = _]R2.
+  rewrite -[in LHS](R3 z^-1^-1^-1 z^-1) -[X in (_ ∪ X^-1)^-1 = _]R2.
   by rewrite -F1 HWm1.
 have F4 z : z^-1^-1^-1 = z^-1 by rewrite F3 R2 -F2.
 by rewrite -(R3 x x) F4.
@@ -397,55 +397,52 @@ move=> [R1 R2 R3] [a HW0].
 pose zero := (a ∪ a^-1)^-1.
 exists zero.
 have F1 : a = (a^-1 ∪ zero)^-1.
-  by rewrite -{1}(R3 a a) HW0.
+  by rewrite -[LHS](R3 a a) HW0.
 have F2 x : a ∪ x = ((a ∪ x)^-1 ∪ ((a ∪ x)∪ a^-1)^-1)^-1.
-  by rewrite -[X in X = _](R3 _ a) [_ ∪ a]R2 R1 HW0.
+  by rewrite -[LHS](R3 _ a) [_ ∪ a]R2 R1 HW0.
 have F3 x : x = (((x ∪ a^-1) ∪ zero)^-1 ∪ (x ∪ a)^-1)^-1.
-  by rewrite -{1}[X in X = _](R3 _ (a^-1 ∪ zero)) -F1 !R1.
+  by rewrite -[LHS](R3 _ (a^-1 ∪ zero)) -F1 !R1.
 have F4 : a^-1 = (((a ∪ a^-1) ∪ a^-1)^-1 ∪ a)^-1.
-  by rewrite -{1}[X in X = _](R3 _ (a ∪ a^-1)) -F1 [a^-1 ∪ _]R2.
+  by rewrite -[LHS](R3 _ (a ∪ a^-1)) -F1 [a^-1 ∪ _]R2.
 have F5 : a = (((a ∪ a^-1) ∪ zero)^-1 ∪ a^-1)^-1.
-  by rewrite {1}(F3 a) HW0.
+  by rewrite [LHS](F3 a) HW0.
 have F6 : a = (((a ∪ a^-1) ∪ a^-1)^-1 ∪ a^-1)^-1.
-  rewrite -{1}[X in X = _](R3 _ ((a ∪ a^-1)∪ a^-1)).
+  rewrite -[LHS](R3 _ ((a ∪ a^-1)∪ a^-1)).
   rewrite !R1 !HW0; congr (_ ∪ _)^-1.
-  by rewrite {3}F4 R2.
+  by rewrite [RHS]F4 R2.
 have F7 : ((a ∪ a^-1) ∪ a^-1)^-1 = zero.
-  by rewrite -{1}[X in X = _](R3 _ a) -F4 -F6 R2.
+  by rewrite -[LHS](R3 _ a) -F4 -F6 R2.
 have F8 : a^-1 = (a ∪ zero)^-1.
   by rewrite F4 F7 R2.
 have F9 : a ∪ zero = a.
   by rewrite F2 -F8 R2 -!R1 [zero ∪ _]R2 !R1 -F5.
 move=> x.
-rewrite /Wm1 -[X in X = _](R3 _ a).
+rewrite /Wm1 -[LHS](R3 _ a).
 by rewrite -!R1 ![zero ∪ _]R2 F9 !R1 R2 -F3.
 Qed.
 
 Lemma P33 a b c : R -> (a ∪ (b ∪ c)^-1)^-1 = ((a ∪ b) ∪ c^-1)^-1 -> a ∪ b = a.
 Proof.
 move=> [R1 R2 R3] H.
-by rewrite -[X in X = _](R3 _ c) -H -[_ ∪ c]R1 R3.
+by rewrite -[LHS](R3 _ c) -H -[_ ∪ c]R1 R3.
 Qed.
 
 Lemma P34 a b c : R -> (a ∪ (b ∪ c)^-1)^-1 = (b ∪ (a ∪ c)^-1)^-1 -> a = b.
 Proof.
 move=> [R1 R2 R3] H.
-rewrite -[X in X = _](R3 _ (b ∪ c)) H.
+rewrite -[LHS](R3 _ (b ∪ c)) H.
 suff -> : a ∪ (b ∪ c) = b ∪ (a ∪ c) by rewrite R3.
 by AC cup R1 R2.
 Qed.
 
 Lemma P35 a b c : R -> (a ∪ b^-1)^-1 = c -> ((a ∪ b)^-1 ∪ c)^-1 = a.
-Proof.
-move=> [R1 R2 R3] H.
-by rewrite -[X in _ = X](R3 _ b) H.
-Qed.
+Proof. by move=> [R1 R2 R3] H; rewrite -[RHS](R3 _ b) H. Qed.
 
 Lemma P36 k a b c :
   R -> (a ∪ b^-1)^-1 = c -> (a ∪ (iter k (cup (a ∪ c)) b)^-1)^-1 = c.
 Proof.
 move=> R H; have [R1 R2 R3] := R.
-elim: k => //= k /(P35 R) {1}<-.
+elim: k => //= k /(P35 R) aH; rewrite -{}[X in X ∪_]aH.
 set bk := iter _ _ _.
 apply: etrans (R3 c (a ∪ bk)).
 rewrite R2; congr (_^-1 ∪ _^-1)^-1; AC cup R1 R2.
@@ -462,27 +459,27 @@ set bk := iter _ _ _ => H1.
 have := P36 k R H.
 rewrite [c ∪ a]R2 -/bk => H2.
 apply: (@P34 _ _ c R).
-by rewrite [_ ∪ c]R2 H R2 H1 {1}/c R2 -H2 [_ ∪ c]R2.
+by rewrite [_ ∪ c]R2 H R2 H1 [X in X^-1 = _]R2 -H2 [_ ∪ c]R2.
 Qed.
 
 Lemma P38 k a b :
   R -> (a ∪ b)^-1 = b^-1 -> (iter k (cup (a ∪ (a ∪ b^-1)^-1)) b)^-1 = b^-1.
-Proof.  by move=> R H; apply: P37; rewrite // -{2}H R2 // R3. Qed.
+Proof. by move=> R H; apply: P37; rewrite // -[X in _ ∪ X]H R2 // R3. Qed.
 
 Lemma P39 a b (v1 := iter 2 (cup a) b) (v2 := iter 3 (cup a) b) :
  R -> v1^-1 = b^-1 -> v2^-1 = b^-1 -> v1 = v2.
 Proof.
 move=> R H1 H2.
 have F1 : (v1 ∪ (iter 2 (cup a) b^-1)^-1)^-1 = b^-1.
-  have /(P38 1 R){2}<- : ((a ∪ a) ∪ b)^-1 = b^-1.
+  have /(P38 1 R) aH : ((a ∪ a) ∪ b)^-1 = b^-1.
     by rewrite -H1; congr (_^-1); AC cup R1 R2.
-  by rewrite /v1 /=; congr (_^-1); AC cup R1 R2.
+  by rewrite -[RHS]aH /v1 /=; congr (_^-1); AC cup R1 R2.
 have F2 : ((((a ∪ a) ∪ b) ∪ a) ∪ (a ∪ b^-1)^-1)^-1 = b^-1.
   apply: etrans (_ : ((a ∪ a) ∪ b)^-1 = _); last first.
     by rewrite -H1 /v1 /=; congr (_^-1); AC cup R1 R2.
   have F : b^-1 = ((a ∪ a) ∪ b)^-1.
     by rewrite -H1 /v1 /=; congr (_^-1); AC cup R1 R2.
-  rewrite -[X in _ = X](@P38 1 a ((a ∪ a) ∪ b) R) //=; last first.
+  rewrite -[RHS](@P38 1 a ((a ∪ a) ∪ b) R) //=; last first.
     apply: etrans F.
     by rewrite -H2 /v2 /=; congr (_^-1); AC cup R1 R2.
   by rewrite -F; congr (_^-1); AC cup R1 R2.
@@ -511,28 +508,29 @@ move=> R [a [b W1]].
 pose c := iter 2 (cup (a ∪ b^-1)^-1) b.
 pose d := c ∪ (c ∪ c^-1)^-1.
 exists ((d ∪ d) ∪ d).
-have F1 : a ∪ c = c by rewrite /c /= -{6}W1; AC cup R1 R2.
+have F1 : a ∪ c = c.
+  by rewrite /c /= -[X in _ = _  ∪ (_  ∪ X)]W1; AC cup R1 R2.
 have F2 : b^-1 = c^-1.
   have /(P38 2 R)<- : (a ∪ b)^-1 = b^-1 by rewrite W1.
   rewrite /c /=; congr _^-1.
-  by rewrite -2!{6}W1; AC cup R1 R2.
+  by rewrite -2![in X in _ ∪ (_^-1 ∪ X)]W1; AC cup R1 R2.
 have F3 : c ∪ (a ∪ c^-1)^-1 = c.
-  rewrite {1}/c -F2.
+  rewrite -[X in _ ∪ (_ ∪  X)^-1]F2.
   apply: etrans (_ : iter 3 (cup (a ∪ b^-1)^-1) b = _).
     by rewrite /=; AC cup R1 R2.
   apply: etrans (_ : iter 3 (cup (a ∪ (a ∪ b^-1)^-1)) b = _).
-    by rewrite /= -3!{4}W1; AC cup R1 R2.
+    by rewrite /= -3![in X in _ ∪ (_ ∪ (_ ∪ X))]W1; AC cup R1 R2.
   rewrite -P40 //; last by left; rewrite W1.
-  by rewrite /c /= -2!{6}W1; AC cup R1 R2.
+  by rewrite /c /= -2![in X in _ ∪ ((a ∪ b^-1)^-1 ∪ X)]W1; AC cup R1 R2.
 have F4 : iter 2 (cup d) c = iter 3 (cup d) c.
   apply: P40 => //; right.
-  rewrite -{1}F1 [a ∪ _]R2 // -[(_ ∪ _) ∪ c^-1]R1 //.
-  by rewrite -{3}F3 R3.
+  rewrite -[X in (X ∪ _)^-1 ∪ _]F1 [a ∪ _]R2 // -[(_ ∪ _) ∪ c^-1]R1 //.
+  by rewrite -[X in _∪ X^-1]F3 R3.
 pose V := (d ∪ (d ∪ (d ∪ (d ∪ (d ∪ c))))) ∪ (c ∪ c^-1)^-1.
 rewrite /= in F4.
 apply: etrans (_ : V = _).
-  by rewrite /V {6}/d; AC cup R1 R2.
-by rewrite /V -!F4 {3}/d; AC cup R1 R2.
+  by rewrite /V [in X in _ ∪ (_ ∪ X)]/d; AC cup R1 R2.
+by rewrite /V -!F4 [in X in X ∪ d]/d; AC cup R1 R2.
 Qed.
 
 Lemma P42 : R -> W1 -> H.
@@ -621,8 +619,9 @@ have F1 : ((((((((3 [.] x)^-1 ∪ x)^-1 ∪ (5 [.] x))^-1 ∪ (3 [.] x)^-1) ∪
   congr (_)^-1; rewrite -!R1 //.
   congr ((_^-1 ∪ _)^-1 ∪ _).
   rewrite  /=; AC cup R1 R2.
-suff {3}<- : ((((3 [.] x)^-1 ∪ x)^-1 ∪ (5 [.] x))^-1 ∪
-            (((3 [.] x)^-1) ∪ ((3 [.] x)^-1 ∪ x)^-1)^-1)^-1 = ((3[.] x)^-1 ∪ x)^-1.
+apply: etrans
+ (_ : ((((3 [.] x)^-1 ∪ x)^-1 ∪ (5 [.] x))^-1 ∪
+            (((3 [.] x)^-1) ∪ ((3 [.] x)^-1 ∪ x)^-1)^-1)^-1 = _).
   by rewrite  [X in _ = X^-1]R2 //; congr (_^-1 ∪ _)^-1; AC cup R1 R2.
 rewrite -F1.
 apply: etrans (P49 (3 [.] x) x (2 [.] x) _ R).
@@ -650,7 +649,7 @@ Lemma P52 x : R -> (((((3 [.] x)^-1 ∪ x)^-1 ∪ (3 [.] x)^-1) ∪
                      ((3 [.] x)^-1 ∪ x)^-1 ∪ (2 [.] x).
 Proof.
 move=> R.
-rewrite -{3}(P51 x R).
+rewrite -[X in _ ∪ X](P51 x R).
 apply: etrans (P43 (3 [.] x) _ R).
 congr (_^-1 ∪ _^-1)^-1; last by rewrite /=; AC cup R1 R2.
 by AC cup R1 R2.
@@ -683,7 +682,8 @@ Proof.
 move=> R.
 exists ((3 [.] a)^-1 ∪ a)^-1; exists (2 [.] a).
 rewrite -P52 //.
-have {3}->: 3[.] a = a ∪ 2 [.] a by rewrite /=; AC cup R1 R2.
+have aH : 3[.] a = a ∪ 2 [.] a by rewrite /=; AC cup R1 R2.
+rewrite [in X in (_∪ X)^-1]aH.
 by apply: P54.
 Qed.
 
