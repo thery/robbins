@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/thery/robbins.svg?branch=master)](https://travis-ci.org/thery/robbins)
+[![Build Status](https://travis-ci.com/thery/robbins.svg?branch=master)](https://travis-ci.com/thery/robbins)
 
 ## Robbins
 
