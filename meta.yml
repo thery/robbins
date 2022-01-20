@@ -4,7 +4,7 @@ shortname: robbins
 organization: thery
 opam_name : coq-robbins
 community: false
-dune: true
+dune: false
 action: true
 
 synopsis: All Robbins algebras are Boolean algebras
@@ -23,8 +23,6 @@ maintainers:
   nickname: thery
 
 opam-file-maintainer: thery@sophia.inria.fr
-
-opam-file-version: dev
 
 license:
   fullname: MIT License

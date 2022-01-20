@@ -17,9 +17,9 @@ All Robbins algebras are Boolean algebras
 A transcription in Coq of : `A Complete Proof of the Robbins Conjecture` 
 Allen L. Mann  """
 
-build: ["dune" "build" "-p" name "-j" jobs]
+build: [make "-j%{jobs}%"]
+install: [make "install"]
 depends: [
-  "dune" {>= "2.5"}
   "coq" {(>= "8.15")}
   "coq-mathcomp-ssreflect" {(>= "1.14.0")}
 ]

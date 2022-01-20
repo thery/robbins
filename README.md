@@ -25,7 +25,6 @@ Allen L. Mann
 - Compatible Coq versions: 8.15 or later
 - Additional dependencies:
   - [MathComp ssreflect 1.14 or later](https://math-comp.github.io)
-  - [Dune](https://dune.build) 2.5 or later
 - Coq namespace: `robbins`
 - Related publication(s): none
 
@@ -44,8 +43,8 @@ To instead build and install manually, do:
 ``` shell
 git clone https://github.com/thery/robbins.git
 cd robbins
-dune build
-dune install
+make   # or make -j <number-of-cores-on-your-machine> 
+make install
 ```
 
 
