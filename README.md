@@ -30,15 +30,8 @@ Allen L. Mann
 
 ## Building and installation instructions
 
-The easiest way to install the latest released version of Robbins
-is via [OPAM](https://opam.ocaml.org/doc/Install.html):
 
-```shell
-opam repo add coq-released https://coq.inria.fr/opam/released
-opam install coq-robbins
-```
-
-To instead build and install manually, do:
+To build and install manually, do:
 
 ``` shell
 git clone https://github.com/thery/robbins.git

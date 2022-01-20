@@ -2,7 +2,6 @@
 fullname: Robbins
 shortname: robbins
 organization: thery
-opam_name : coq-robbins
 community: false
 dune: false
 action: true
