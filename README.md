@@ -24,7 +24,7 @@ Allen L. Mann
 - License: [MIT License](LICENSE)
 - Compatible Coq versions: 8.15 or later
 - Additional dependencies:
-  - [MathComp ssreflect 1.14 or later](https://math-comp.github.io)
+  - [MathComp ssreflect 1.15 or later](https://math-comp.github.io)
 - Coq namespace: `robbins`
 - Related publication(s): none
 
