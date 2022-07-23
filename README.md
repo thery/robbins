@@ -30,9 +30,6 @@ Allen L. Mann
 
 ## Building and installation instructions
 
-
-To build and install manually, do:
-
 ``` shell
 git clone https://github.com/thery/robbins.git
 cd robbins
