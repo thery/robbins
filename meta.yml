@@ -39,7 +39,7 @@ dependencies:
     [MathComp ssreflect 1.15 or later](https://math-comp.github.io)
 
 tested_coq_opam_versions:
-- version: '1.14.0-coq-8.15'
+- version: '1.15.0-coq-8.15'
   repo: 'mathcomp/mathcomp'
 
 namespace: robbins
