@@ -29,12 +29,12 @@ license:
 
 supported_coq_versions:
   text: '8.15 or later'
-  opam: '{(>= "8.15")}'
+  opam: '{(>= "8.16")}'
 
 dependencies:
 - opam:
     name: coq-mathcomp-ssreflect
-    version: '{(>= "1.15.0")}'
+    version: '{(>= "1.16.0")}'
   description: |-
     [MathComp ssreflect 1.15 or later](https://math-comp.github.io)
 
