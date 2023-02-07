@@ -28,7 +28,7 @@ license:
   identifier: MIT
 
 supported_coq_versions:
-  text: '8.15 or later'
+  text: '8.16 or later'
   opam: '{(>= "8.16")}'
 
 dependencies:
