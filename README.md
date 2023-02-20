@@ -30,7 +30,7 @@ Allen L. Mann
 
 ## Building and installation instructions
 
-To instead build and install manually, do:
+To build and install manually, do:
 
 ``` shell
 git clone https://github.com/thery/robbins.git
