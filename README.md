@@ -22,9 +22,9 @@ Allen L. Mann
 - Author(s):
   - Laurent Théry
 - License: [MIT License](LICENSE)
-- Compatible Coq versions: 8.16 or later
+- Compatible Coq versions: 8.17 or later
 - Additional dependencies:
-  - [MathComp ssreflect 1.16 or later](https://math-comp.github.io)
+  - [MathComp ssreflect 1.17 or later](https://math-comp.github.io)
 - Coq namespace: `robbins`
 - Related publication(s): none
 
