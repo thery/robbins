@@ -20,8 +20,8 @@ Allen L. Mann  """
 build: [make "-j%{jobs}%"]
 install: [make "install"]
 depends: [
-  "coq" {(>= "8.19")}
-  "coq-mathcomp-ssreflect" {(>= "2.2.0")}
+  "coq" {(>= "8.20")}
+  "coq-mathcomp-ssreflect" {(>= "2.3.0")}
 ]
 
 tags: [

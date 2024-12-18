@@ -28,18 +28,18 @@ license:
   identifier: MIT
 
 supported_coq_versions:
-  text: '8.19 or later'
-  opam: '{(>= "8.19")}'
+  text: '8.20 or later'
+  opam: '{(>= "8.20")}'
 
 dependencies:
 - opam:
     name: coq-mathcomp-ssreflect
-    version: '{(>= "2.2.0")}'
+    version: '{(>= "2.3.0")}'
   description: |-
-    [MathComp ssreflect 2.2 or later](https://math-comp.github.io)
+    [MathComp ssreflect 2.3 or later](https://math-comp.github.io)
 
 tested_coq_opam_versions:
-- version: '2.2.0-coq-8.19'
+- version: '2.3.0-coq-8.20'
   repo: 'mathcomp/mathcomp'
 
 namespace: robbins

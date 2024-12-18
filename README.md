@@ -22,14 +22,13 @@ Allen L. Mann
 - Author(s):
   - Laurent Théry
 - License: [MIT License](LICENSE)
-- Compatible Coq versions: 8.19 or later
+- Compatible Coq versions: 8.20 or later
 - Additional dependencies:
-  - [MathComp ssreflect 2.2 or later](https://math-comp.github.io)
+  - [MathComp ssreflect 2.3 or later](https://math-comp.github.io)
 - Coq namespace: `robbins`
 - Related publication(s): none
 
 ## Building and installation instructions
-
 
 To build and install manually, do:
 
