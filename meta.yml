@@ -28,8 +28,8 @@ license:
   identifier: MIT
 
 supported_coq_versions:
-  text: '8.20 or later'
-  opam: '{(>= "8.20")}'
+  text: '9.0 or later'
+  opam: '{(>= "9.0")}'
 
 dependencies:
 - opam:
@@ -39,7 +39,7 @@ dependencies:
     [MathComp ssreflect 2.4 or later](https://math-comp.github.io)
 
 tested_coq_opam_versions:
-- version: '2.4.0-coq-8.20'
+- version: '2.4.0-rocq-prover-9.0'
   repo: 'mathcomp/mathcomp'
 
 namespace: robbins
