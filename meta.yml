@@ -34,12 +34,12 @@ supported_coq_versions:
 dependencies:
 - opam:
     name: coq-mathcomp-ssreflect
-    version: '{(>= "2.4.0")}'
+    version: '{(>= "2.5.0")}'
   description: |-
-    [MathComp ssreflect 2.4 or later](https://math-comp.github.io)
+    [MathComp ssreflect 2.5 or later](https://math-comp.github.io)
 
 tested_coq_opam_versions:
-- version: '2.4.0-rocq-prover-9.0'
+- version: '2.5.0-rocq-prover-9.0'
   repo: 'mathcomp/mathcomp'
 
 namespace: robbins
