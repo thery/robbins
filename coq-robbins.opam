@@ -14,7 +14,7 @@ synopsis: "All Robbins algebras are Boolean algebras"
 description: """
 All Robbins algebras are Boolean algebras
 
-A transcription in Coq of : `A Complete Proof of the Robbins Conjecture` 
+A transcription in Rocq of : `A Complete Proof of the Robbins Conjecture` 
 Allen L. Mann  """
 
 build: [make "-j%{jobs}%"]

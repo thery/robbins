@@ -14,7 +14,7 @@ Follow the instructions on https://github.com/coq-community/templates to regener
 
 All Robbins algebras are Boolean algebras
 
-A transcription in Coq of : `A Complete Proof of the Robbins Conjecture` 
+A transcription in Rocq of : `A Complete Proof of the Robbins Conjecture` 
 Allen L. Mann  
 
 ## Meta
