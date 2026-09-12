@@ -29,23 +29,11 @@ Allen L. Mann
 
 ## Building and installation instructions
 
-The easiest way to install the latest released version of Robbins
-is via [OPAM](https://opam.ocaml.org/doc/Install.html):
-
-```shell
-opam repo add rocq-released https://rocq-prover.org/opam/released
-opam install coq-robbins
-```
-
-To instead build and install manually, you need to make sure that all the
-libraries this development depends on are installed.  The easiest way to do that
-is still to rely on opam:
+To instead build and install manually.
 
 ``` shell
 git clone https://github.com/thery/robbins.git
 cd robbins
-opam repo add rocq-released https://rocq-prover.org/opam/released
-opam install --deps-only .
 make   # or make -j <number-of-cores-on-your-machine> 
 make install
 ```
