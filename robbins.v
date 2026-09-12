@@ -479,7 +479,7 @@ have F2 : ((((a ∪ a) ∪ b) ∪ a) ∪ (a ∪ b^-1)^-1)^-1 = b^-1.
     by rewrite -H1 /v1 /=; congr (_^-1); AC cup R1 R2.
   have F : b^-1 = ((a ∪ a) ∪ b)^-1.
     by rewrite -H1 /v1 /=; congr (_^-1); AC cup R1 R2.
-  rewrite -[RHS](@P38 1 a ((a ∪ a) ∪ b) R) //=; last first.
+  rewrite -[RHS](@P38 1 a ((a ∪ a) ∪ b) R) //=.
     apply: etrans F.
     by rewrite -H2 /v2 /=; congr (_^-1); AC cup R1 R2.
   by rewrite -F; congr (_^-1); AC cup R1 R2.
@@ -520,7 +520,7 @@ have F3 : c ∪ (a ∪ c^-1)^-1 = c.
     by rewrite /=; AC cup R1 R2.
   apply: etrans (_ : iter 3 (cup (a ∪ (a ∪ b^-1)^-1)) b = _).
     by rewrite /= -3![in X in _ ∪ (_ ∪ (_ ∪ X))]W1; AC cup R1 R2.
-  rewrite -P40 //; last by left; rewrite W1.
+  rewrite -P40 //; first by left; rewrite W1.
   by rewrite /c /= -2![in X in _ ∪ ((a ∪ b^-1)^-1 ∪ X)]W1; AC cup R1 R2.
 have F4 : iter 2 (cup d) c = iter 3 (cup d) c.
   apply: P40 => //; right.
